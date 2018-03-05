@@ -1,3 +1,8 @@
+
+$("#start_button").click(function() {
+    
+});
+
 //how to store questions, answer choices and correct answers (array of objects)
 
 
@@ -9,10 +14,15 @@
 
 //Score the quiz using jQuery selector
 
-//display on scrore correct or incorrect for the user\
+//display score correct or incorrect for the user
 
-//countdown timers
-var timeleft = 60;
+
+
+
+
+
+//countdown timer
+var timeleft = 30;
 
 function setup() {
 
@@ -27,3 +37,5 @@ function setup() {
 	setInterval(timeIt, 1000);
 }
 
+clearInterval()
+setTimeout()
