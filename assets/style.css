@@ -1,4 +1,4 @@
-* {
+{
 	box-sizing: border-box;
 }
 
@@ -25,13 +25,7 @@ div {
   text-transform: capitalize;
 }
 
-#coverphoto {
-	margin: 20px auto;
-	width: 25%;
-	height: 25%;
-	display: block;
 
-}
 
 button {
     text-align: center;
@@ -53,16 +47,6 @@ button {
 
 }
 
-.images {
-	align-items: center;
-}
-   
-
-.gameImage {
-	width:  270px !important;
-	height: 150px !important;
-	
-}
 
 header {
 	background-color: #fff;
