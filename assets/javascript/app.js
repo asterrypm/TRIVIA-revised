@@ -1,11 +1,12 @@
-
+	var timeLeft = 180;	
+	var startToggle = 0;
 	var questions =  [{
 		question: "Where can the most active volcano in the world be found?",
         choices: ["Kilauea Volcano - United States", "Etna Volcano - Italy", "Ambrym Volcano - Vanuatu", "Eyjafjallajokull Volcano - Iceland"],
         correct: 0
         
     }, {
-        question: "Where can you see this painting: 'Guernica'?",
+        question: "Where can you see the painting: 'Guernica'?",
         choices: ["Colombia", "Brazil", "Mexico", "Spain"],
         correct: 3
         
@@ -30,7 +31,7 @@
         correct: 3
 
     }, {
-        question: "In what country would you find this ancient structure of Machu Picchu?",
+        question: "In what country would you find the ancient structure of Machu Picchu?",
         choices: ["Peru", "Chile", "Mexico", "Cuba"],
         correct: 0
 
@@ -60,7 +61,7 @@
         correct: 0
 
     },  {
-        question: "Where can you find this statue?",
+        question: "Where can you find Christ the Redeemer statue?",
         choices: ["Spain", "Brazil", "Mexico", "Italy"],
         correct: 1
 
@@ -101,10 +102,11 @@
 
 	}];
 
-	var Counter = {
+	var counter = {
 		correct: 0,
 		incorrect: 0
 	}
+
 
             for (var i = 0; i < questions.length; i++) {
             	var question = $('<div>');
@@ -126,10 +128,10 @@
                
             }
 
-            $("#submit_button").click(score)
-            	
-    
-            function Score (){
+            $("#submit_button").click(score);
+            $("#start").click(run);
+            function score(){
+            	console.log('trigger');
 				var selected = $('input[type="radio"]:checked');
             	for (var i = 0; i<selected.length; i++){
             		console.log ($(selected[i]).attr("value"));
@@ -144,39 +146,60 @@
 
             		//Comparision between response and cAnswer
             		if (response === cAnswer) {
-            			Counter.correct++;
+            			counter.correct++;
             		} else {
-            		 	Counter.incorrect++;
+            		 	counter.incorrect++;
             		 	} 
 
             //Increment the counter (if then else to increment appropriately)
 
             	}
-            	$(".correct").html(Counter.correct);
-            	$(".incorrect").html(Counter.incorrect);
+            	$(".correct").html("Correct:" + " " + counter.correct);
+            	$(".incorrect").html("Incorrect:" + " " + counter.incorrect);
     		}
 
+	    		$("#slideshow > div:gt(0)").hide();
+
+				setInterval(function() { 
+				  $('#slideshow > div:first')
+				    .fadeOut(1000)
+				    .next()
+				    .fadeIn(1000)
+				    .end()
+				    .appendTo('#slideshow');
+				},	3000);
+				
     		//countdown timer
 
+			 
+    		//how to convert the format of seconds to minutes and seconds MM:SS
+			 function convertSeconds(s) {
+			 	s = timeLeft
+				var min = Math.floor (s/60);
+				var sec = s % 60;
+				return ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2);
+			 }
+
+			 //how do I add the word Timer when the timer starts?
+			    function decrement() {
+			      timeLeft--;
+			      $("#timer").html("<p>" + timeLeft + "</p>");
+			      if (timeLeft === 0) {
+			        clearInterval(decrement);
+			        score();
+			      }
+			    };
+			    
+			    //this function prevents the Start button resetting the interval by adding a boolean.
+			    function run() {
+			       if(startToggle == 0) {
+			       	  setInterval(decrement, 1000);
+			       	  startToggle++;
+			       }
+			    };
 
 
 
 
 
-//var timeleft = 30;
 
-// function setup() {
-
-// 	var timer = select ('#timer');
-// 	timer.html(timeleft - counter);
-
-// 	function timeIt () {
-// 		counter ++;
-// 		timer.html(timeleft - counter);
-// 	}
-
-// 	setInterval(timeIt, 1000);
-// }
-
-// clearInterval()
-// setTimeout()
